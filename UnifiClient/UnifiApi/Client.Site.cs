@@ -256,13 +256,13 @@ namespace UnifiApi
         /// <param name="setting">The setting.</param>
         /// <param name="siteName">Name of the site.</param>
         /// <returns>returns <c>true</c> on success</returns>
-        public async Task<BoolResponse> SetSiteManagementAsync(MgmtSetting setting, string siteName = null)
+        public Task<BoolResponse> SetSiteManagementAsync(MgmtSetting setting, string siteName = null)
         {
             throw new NotImplementedException();
             //TODO: FIX This. Currently returning "\napi.err.InvalidPayload"
-            var path = $"api/s/{(siteName ?? Site)}/set/setting/mgmt";
-            var oJsonObject = JObject.FromObject(setting);
-            return await ExecuteBoolCommandAsync(path, oJsonObject, "PUT");
+            //var path = $"api/s/{(siteName ?? Site)}/set/setting/mgmt";
+            //var oJsonObject = JObject.FromObject(setting);
+            //return await ExecuteBoolCommandAsync(path, oJsonObject, "PUT");
         }
 
         /// <summary>

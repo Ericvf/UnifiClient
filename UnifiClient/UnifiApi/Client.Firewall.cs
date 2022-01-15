@@ -95,6 +95,35 @@ namespace UnifiApi
             return JsonConvert.DeserializeObject<BaseResponse<FirewallGroup>>(response.Result);
         }
 
+        /// <summary>
+        /// list firewall rules.
+        /// </summary>
+        /// <returns>returns list of firewall rules</returns>
+        public async Task<BaseResponse<FirewallRule>> GetFirewallRules()
+        {
+            var path = $"/api/s/{Site}/rest/firewallrule";
+
+            var response = await ExecuteGetCommandAsync(path);
+
+            return JsonConvert.DeserializeObject<BaseResponse<FirewallRule>>(response.Result);
+        }
+
+        /// <summary>
+        /// update firewall rule.
+        /// </summary>
+        /// <param name="firewallRule">The firewall rule.</param>
+        /// <returns>returns a list containing a single firewall rule of the updated firewall rule on success</returns>
+        public async Task<BaseResponse<FirewallRule>> UpdateFirewallRule(FirewallRule firewallRule)
+        {
+            var path = $"api/s/{Site}/rest/firewallrule/{firewallRule.Id}";
+
+            var payload = JObject.FromObject(firewallRule);
+
+            var response = await ExecuteJsonCommandAsync(path, payload, "PUT");
+
+            return JsonConvert.DeserializeObject<BaseResponse<FirewallRule>>(response.Result);
+        }
+
         #endregion
     }
 }
